@@ -42,15 +42,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Sidebar />
         )}
         
-        <main className="xv-content">
+        <main className="flex-1 p-8 max-w-7xl mx-auto w-full">
           {children}
         </main>
       </div>
       
-      <footer className="xv-footer">
-        <div className="flex items-center justify-between w-full">
-          <div>XViolet v1.0</div>
-          <div>&copy; 2025 XViolet</div>
+      <footer className="h-10 bg-sidebar dark:bg-sidebar-background border-t border-sidebar-border">
+        <div className="container flex items-center justify-between h-full px-8 mx-auto">
+          <div className="text-sm text-muted-foreground">XViolet v1.0</div>
+          <div className="text-sm text-muted-foreground">&copy; 2025 XViolet</div>
         </div>
       </footer>
     </div>
