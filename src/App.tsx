@@ -12,28 +12,31 @@ import Extensions from "./pages/Extensions";
 import Settings from "./pages/Settings";
 import AgentCentral from "./pages/AgentCentral";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/timeline" element={<Timeline />} />
-          <Route path="/tweet" element={<Tweet />} />
-          <Route path="/extensions" element={<Extensions />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/agent-central" element={<AgentCentral />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/timeline" element={<Timeline />} />
+            <Route path="/tweet" element={<Tweet />} />
+            <Route path="/extensions" element={<Extensions />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/agent-central" element={<AgentCentral />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

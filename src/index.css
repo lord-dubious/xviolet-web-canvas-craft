@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -94,6 +95,15 @@
   body {
     @apply bg-background text-foreground font-sans min-h-screen;
   }
+
+  /* Base dark mode styles */
+  .dark .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+
+  .dark .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
 }
 
 @layer components {
@@ -102,39 +112,39 @@
   }
   
   .xv-header {
-    @apply h-16 md:h-16 bg-background shadow-header sticky top-0 z-50 flex items-center px-4;
+    @apply h-16 md:h-16 bg-background shadow-header sticky top-0 z-50 flex items-center px-4 dark:border-b dark:border-sidebar-border;
   }
 
   .xv-sidebar {
-    @apply w-56 bg-sidebar h-full fixed left-0 top-16 z-40 overflow-y-auto hidden md:block;
+    @apply w-56 bg-sidebar h-full fixed left-0 top-16 z-40 overflow-y-auto hidden md:block dark:bg-sidebar-background dark:text-sidebar-foreground;
   }
 
   .xv-sidebar-item {
-    @apply flex items-center gap-2 px-4 py-3 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors;
+    @apply flex items-center gap-2 px-4 py-3 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors dark:hover:bg-sidebar-accent dark:hover:text-sidebar-accent-foreground;
   }
 
   .xv-sidebar-item.active {
-    @apply bg-sidebar-accent text-xviolet-primary border-l-4 border-xviolet-primary font-medium;
+    @apply bg-sidebar-accent text-xviolet-primary border-l-4 border-xviolet-primary font-medium dark:bg-sidebar-accent dark:text-sidebar-primary dark:border-sidebar-primary;
   }
 
   .xv-content {
-    @apply md:ml-56 p-4 md:p-8 min-h-[calc(100vh-4rem)] max-w-7xl mx-auto;
+    @apply md:ml-56 p-4 md:p-8 min-h-[calc(100vh-4rem)] max-w-7xl mx-auto dark:bg-background;
   }
   
   .xv-footer {
-    @apply h-10 bg-sidebar text-sm border-t border-sidebar-border px-4 flex items-center justify-center md:justify-end;
+    @apply h-10 bg-sidebar text-sm border-t border-sidebar-border px-4 flex items-center justify-center md:justify-end dark:bg-sidebar-background dark:border-sidebar-border;
   }
 
   .xv-btn-primary {
-    @apply bg-xviolet-primary text-white font-medium rounded-lg px-6 py-2 hover:bg-xviolet-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:ring-offset-2;
+    @apply bg-xviolet-primary text-white font-medium rounded-lg px-6 py-2 hover:bg-xviolet-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:ring-offset-2 dark:bg-primary dark:hover:bg-primary/90;
   }
 
   .xv-input {
-    @apply border border-input rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:border-transparent;
+    @apply border border-input rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:border-transparent dark:bg-input dark:text-foreground;
   }
 
   .xv-label {
-    @apply block text-sm font-medium text-slate-700 mb-1;
+    @apply block text-sm font-medium text-slate-700 mb-1 dark:text-slate-300;
   }
 
   .xv-notification {
@@ -142,19 +152,19 @@
   }
 
   .xv-notification-success {
-    @apply bg-green-50 text-green-800 border-l-4 border-status-success;
+    @apply bg-green-50 text-green-800 border-l-4 border-status-success dark:bg-green-900/20 dark:text-green-400 dark:border-green-500;
   }
 
   .xv-notification-error {
-    @apply bg-red-50 text-red-800 border-l-4 border-status-error;
+    @apply bg-red-50 text-red-800 border-l-4 border-status-error dark:bg-red-900/20 dark:text-red-400 dark:border-red-500;
   }
 
   .xv-notification-info {
-    @apply bg-blue-50 text-blue-800 border-l-4 border-status-info;
+    @apply bg-blue-50 text-blue-800 border-l-4 border-status-info dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-500;
   }
 
   .xv-notification-warning {
-    @apply bg-amber-50 text-amber-800 border-l-4 border-status-warning;
+    @apply bg-amber-50 text-amber-800 border-l-4 border-status-warning dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-500;
   }
 
   .xv-avatar {

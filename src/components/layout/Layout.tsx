@@ -5,6 +5,7 @@ import { Sidebar } from "./Sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   Sheet,
   SheetContent,
@@ -19,7 +20,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col dark:bg-background">
+      <div className="fixed top-4 right-4 z-[60]">
+        <ThemeToggle />
+      </div>
+      
       <Header />
       
       {isMobile ? (
@@ -45,7 +50,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       
-      <footer className="xv-footer">
+      <footer className="xv-footer dark:bg-sidebar dark:text-sidebar-foreground dark:border-sidebar-border">
         <div>XViolet v1.0 &copy; 2025</div>
       </footer>
     </div>
