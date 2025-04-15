@@ -10,6 +10,7 @@ import {
   LogOut,
   Plug
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type NavItemProps = {
   to: string;
@@ -32,6 +33,13 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, children }) => {
 };
 
 export const Sidebar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // In a real app, perform logout logic here
+    navigate("/login");
+  };
+
   return (
     <aside className="xv-sidebar">
       <div className="py-2">
@@ -56,7 +64,7 @@ export const Sidebar: React.FC = () => {
 
         <div className="border-t border-sidebar-border my-2"></div>
         
-        <button className="xv-sidebar-item w-full">
+        <button className="xv-sidebar-item w-full" onClick={handleLogout}>
           <LogOut size={20} />
           <span>Logout</span>
         </button>

@@ -22,33 +22,35 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen flex flex-col dark:bg-background">
       <Header />
       
-      {isMobile ? (
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="fixed bottom-4 right-4 z-50 rounded-full bg-xviolet-primary text-white shadow-lg"
-            >
-              <Menu size={24} />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 bg-sidebar dark:bg-sidebar-background">
-            <Sidebar />
-          </SheetContent>
-        </Sheet>
-      ) : (
-        <Sidebar />
-      )}
-      
-      <main className="xv-content">
-        {children}
-      </main>
+      <div className="flex flex-1">
+        {isMobile ? (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="fixed bottom-4 right-4 z-50 rounded-full bg-xviolet-primary text-white shadow-lg"
+              >
+                <Menu size={24} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 bg-sidebar dark:bg-sidebar-background">
+              <Sidebar />
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <Sidebar />
+        )}
+        
+        <main className="xv-content">
+          {children}
+        </main>
+      </div>
       
       <footer className="xv-footer">
         <div className="flex items-center justify-between w-full">
           <div>XViolet v1.0</div>
-          <div>&copy; 2025</div>
+          <div>&copy; 2025 XViolet</div>
         </div>
       </footer>
     </div>

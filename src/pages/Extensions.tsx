@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -200,6 +201,12 @@ export const Extensions: React.FC = () => {
     }
   };
 
+  const getActiveExtension = () => {
+    return extensions.find(ext => ext.id === activeTab);
+  };
+
+  const activeExtension = getActiveExtension();
+
   return (
     <Layout>
       <h1 className="text-2xl font-bold mb-6">Extensions</h1>
@@ -223,6 +230,129 @@ export const Extensions: React.FC = () => {
             ))}
           </TabsList>
         </div>
+
+        {extensions.map((extension) => (
+          <TabsContent key={extension.id} value={extension.id}>
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      {extension.icon}
+                      <CardTitle>{extension.name}</CardTitle>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
+                      <span>v{extension.version}</span>
+                      <span>•</span>
+                      <span>By {extension.author}</span>
+                    </div>
+                  </div>
+                  <Badge variant="outline">{extension.id}</Badge>
+                </div>
+                <CardDescription className="mt-2">{extension.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form className="space-y-4">
+                  {extension.fields?.map((field) => (
+                    <div key={field.id} className="space-y-2">
+                      <Label htmlFor={field.id}>{field.label}</Label>
+                      
+                      {field.type === 'text' && (
+                        <Input id={field.id} placeholder={field.placeholder} />
+                      )}
+                      
+                      {field.type === 'password' && (
+                        <Input id={field.id} type="password" placeholder={field.placeholder} />
+                      )}
+                      
+                      {field.type === 'select' && (
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select an option" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {field.options?.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                      
+                      {field.type === 'textarea' && (
+                        <Textarea id={field.id} placeholder={field.placeholder} rows={5} />
+                      )}
+                      
+                      {field.type === 'file' && (
+                        <div className="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
+                          <Input id={field.id} type="file" className="hidden" />
+                          <label htmlFor={field.id} className="cursor-pointer flex flex-col items-center gap-2">
+                            <Download className="h-6 w-6 text-muted-foreground" />
+                            <span className="text-sm text-muted-foreground">Upload document</span>
+                          </label>
+                        </div>
+                      )}
+                      
+                      {field.type === 'date' && (
+                        <Input id={field.id} type="date" />
+                      )}
+                      
+                      {field.type === 'time' && (
+                        <Input id={field.id} type="time" />
+                      )}
+                    </div>
+                  ))}
+                  
+                  {showSuccess && (
+                    <Alert className="bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                      <CheckCircle2 className="h-4 w-4" />
+                      <AlertTitle>Success</AlertTitle>
+                      <AlertDescription>Operation completed successfully.</AlertDescription>
+                    </Alert>
+                  )}
+                  
+                  {showError && (
+                    <Alert className="bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-400">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>An error occurred. Please try again.</AlertDescription>
+                    </Alert>
+                  )}
+                  
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {extension.actions?.map((action, index) => (
+                      <Button 
+                        key={index} 
+                        onClick={handleAction}
+                        variant={action.destructive ? "destructive" : action.primary ? "default" : "outline"}
+                      >
+                        {action.label}
+                      </Button>
+                    ))}
+                  </div>
+                  
+                  <Collapsible className="w-full" open={isLogExpanded} onOpenChange={setIsLogExpanded}>
+                    <CollapsibleTrigger asChild>
+                      <Button variant="ghost" className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-2">
+                          <Terminal className="h-4 w-4" />
+                          <span>Logs</span>
+                        </div>
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isLogExpanded ? "transform rotate-180" : ""}`} />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="bg-muted p-3 rounded-md mt-2 font-mono text-sm whitespace-pre overflow-x-auto">
+                        {extension.logs}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </form>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        ))}
       </Tabs>
     </Layout>
   );
