@@ -51,3 +51,11 @@
 .dark .read-the-docs {
   color: hsl(var(--muted-foreground));
 }
+
+/* Custom sidebar styling */
+.dark .xv-sidebar,
+.dark .xv-footer {
+  background-color: hsl(var(--sidebar-background));
+  color: hsl(var(--sidebar-foreground));
+  border-color: hsl(var(--sidebar-border));
+}

@@ -38,7 +38,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Menu size={24} />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="p-0">
+          <SheetContent side="left" className="p-0 bg-sidebar dark:bg-sidebar-background">
             <Sidebar />
           </SheetContent>
         </Sheet>
@@ -50,7 +50,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       
-      <footer className="xv-footer dark:bg-sidebar dark:text-sidebar-foreground dark:border-sidebar-border">
+      <footer className="xv-footer">
         <div>XViolet v1.0 &copy; 2025</div>
       </footer>
     </div>
