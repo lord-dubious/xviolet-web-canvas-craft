@@ -5,7 +5,6 @@ import { Sidebar } from "./Sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   Sheet,
   SheetContent,
@@ -47,7 +46,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
       
       <footer className="xv-footer">
-        <div>XViolet v1.0 &copy; 2025</div>
+        <div className="flex items-center justify-between w-full">
+          <div>XViolet v1.0</div>
+          <div>&copy; 2025</div>
+        </div>
       </footer>
     </div>
   );

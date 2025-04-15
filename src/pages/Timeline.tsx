@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -178,20 +177,12 @@ export const Timeline: React.FC = () => {
         <div className="flex-1">
           <h1 className="text-2xl font-bold mb-6">Timeline</h1>
 
-          <Tabs defaultValue="home" className="mb-6">
-            <TabsList className="grid grid-cols-4">
-              <TabsTrigger value="home" onClick={() => setActiveTab("home")}>
-                Home
-              </TabsTrigger>
-              <TabsTrigger value="user" onClick={() => setActiveTab("user")}>
-                User
-              </TabsTrigger>
-              <TabsTrigger value="mentions" onClick={() => setActiveTab("mentions")}>
-                Mentions
-              </TabsTrigger>
-              <TabsTrigger value="search" onClick={() => setActiveTab("search")}>
-                Search
-              </TabsTrigger>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+            <TabsList className="grid grid-cols-4 w-full">
+              <TabsTrigger value="home">Home</TabsTrigger>
+              <TabsTrigger value="user">User</TabsTrigger>
+              <TabsTrigger value="mentions">Mentions</TabsTrigger>
+              <TabsTrigger value="search">Search</TabsTrigger>
             </TabsList>
 
             {/* Search Bar */}
@@ -289,7 +280,7 @@ export const Timeline: React.FC = () => {
           </Tabs>
         </div>
 
-        {/* Sidebar widgets (desktop only) */}
+        {/* Sidebar widgets */}
         <div className="w-full md:w-80 space-y-6">
           <Card>
             <CardContent className="p-4">
