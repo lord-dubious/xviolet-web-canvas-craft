@@ -21,10 +21,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-background">
-      <div className="fixed top-4 right-4 z-[60]">
-        <ThemeToggle />
-      </div>
-      
       <Header />
       
       {isMobile ? (
