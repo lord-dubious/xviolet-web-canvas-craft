@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,42 +15,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 270 60% 45%;  /* XViolet Primary purple */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 270 24% 54%; /* Adjusted for XViolet Secondary */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 270 20% 96%; /* Slightly tinted for XViolet */
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 270 80% 97%; /* XViolet accent color */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
+    --border: 270 16% 90%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 270 60% 45%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
+    --sidebar-background: 270 80% 97%; /* XViolet sidebar bg (#f5f3fa) */
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-primary: 270 60% 45%; /* XViolet primary */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 270 30% 95%;
+    --sidebar-accent-foreground: 270 60% 45%;
+    --sidebar-border: 270 16% 90%;
+    --sidebar-ring: 270 60% 45%;
   }
 
   .dark {
@@ -61,32 +56,33 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 270 50% 65%; /* Lighter XViolet for dark mode */
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 270 30% 40%; /* Adjusted for dark mode */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 270 20% 20%;
+    --muted-foreground: 270 10% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 270 30% 25%;
+    --accent-foreground: 270 50% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 270 20% 30%;
+    --input: 270 20% 25%;
+    --ring: 270 50% 65%;
+
+    --sidebar-background: 270 30% 15%;
+    --sidebar-foreground: 270 30% 90%;
+    --sidebar-primary: 270 50% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 270 20% 20%;
+    --sidebar-accent-foreground: 270 30% 90%;
+    --sidebar-border: 270 20% 25%;
+    --sidebar-ring: 270 50% 65%;
   }
 }
 
@@ -96,6 +92,72 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans min-h-screen;
+  }
+}
+
+@layer components {
+  .xv-card {
+    @apply bg-card rounded-xl shadow-card p-6;
+  }
+  
+  .xv-header {
+    @apply h-16 md:h-16 bg-background shadow-header sticky top-0 z-50 flex items-center px-4;
+  }
+
+  .xv-sidebar {
+    @apply w-56 bg-sidebar h-full fixed left-0 top-16 z-40 overflow-y-auto hidden md:block;
+  }
+
+  .xv-sidebar-item {
+    @apply flex items-center gap-2 px-4 py-3 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors;
+  }
+
+  .xv-sidebar-item.active {
+    @apply bg-sidebar-accent text-xviolet-primary border-l-4 border-xviolet-primary font-medium;
+  }
+
+  .xv-content {
+    @apply md:ml-56 p-4 md:p-8 min-h-[calc(100vh-4rem)] max-w-7xl mx-auto;
+  }
+  
+  .xv-footer {
+    @apply h-10 bg-sidebar text-sm border-t border-sidebar-border px-4 flex items-center justify-center md:justify-end;
+  }
+
+  .xv-btn-primary {
+    @apply bg-xviolet-primary text-white font-medium rounded-lg px-6 py-2 hover:bg-xviolet-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:ring-offset-2;
+  }
+
+  .xv-input {
+    @apply border border-input rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-xviolet-primary focus:border-transparent;
+  }
+
+  .xv-label {
+    @apply block text-sm font-medium text-slate-700 mb-1;
+  }
+
+  .xv-notification {
+    @apply p-4 rounded-lg mb-4 flex items-start gap-3;
+  }
+
+  .xv-notification-success {
+    @apply bg-green-50 text-green-800 border-l-4 border-status-success;
+  }
+
+  .xv-notification-error {
+    @apply bg-red-50 text-red-800 border-l-4 border-status-error;
+  }
+
+  .xv-notification-info {
+    @apply bg-blue-50 text-blue-800 border-l-4 border-status-info;
+  }
+
+  .xv-notification-warning {
+    @apply bg-amber-50 text-amber-800 border-l-4 border-status-warning;
+  }
+
+  .xv-avatar {
+    @apply rounded-avatar overflow-hidden flex-shrink-0;
   }
 }
